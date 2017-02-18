@@ -1,6 +1,6 @@
 <span ng-if="node.nodes && node.nodes.length > 0" ng-click="toggle(this)" class="glyphicon" ng-class="{ 'glyphicon-plus': collapsed, 'glyphicon-minus': !collapsed}"></span>
 <span ng-if="!node.nodes || node.nodes.length == 0" class="glyphicon glyphicon-none"></span>
-    <span class="pekare" ng-class="{selected: node.isSelected}" ng-click="alerta(node.title)">{{node.title}}({{node.id}})</span> 
+    <span id="node_id_{{node.id}}" class="pekare" ng-class="{selected: node.isSelected}" ng-click="alerta(node.title)">{{node.title}}({{node.id}})</span> 
 <ol ui-tree-nodes="" ng-model="node.nodes" ng-class="{hidden: collapsed}">
     <li ng-repeat="node in node.nodes" id="menu-item-{{$index}}" ui-tree-node data-nodrag ng-include="'nodes_renderer.html'">
     </li>

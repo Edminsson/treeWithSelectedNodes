@@ -1,4 +1,9 @@
 /* Put your css in here */
+#treeContainer {
+  background-color: lightgray;
+  height: 200px;
+  overflow-y: auto;
+}
 .pekare {
   cursor: pointer;
 }

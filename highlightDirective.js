@@ -17,10 +17,12 @@ angular.module('plunker')
           if (nod !== null) {
             treeHelper.selectedNodes.push(nod);
             nod.isSelected = true;
+            treeHelper.scrollNodeToView(nod, 'treeContainer');
             console.log('found the node whith id ', newValue);
           } else {
             console.log('could not find node with id ', newValue);
           }
+
         }
       })
     }
