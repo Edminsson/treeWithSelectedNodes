@@ -38,17 +38,13 @@ angular.module('plunker')
 
         var deltaBottom = rect.bottom - containerBottom;
         var deltaTop = rect.top - containerTop;
-        //var delta = Math.max(deltaBottom, deltaTop);
+        var delta = (deltaBottom > 0) ? deltaBottom : deltaTop < 0 ? deltaTop : 0;
 
-        if(deltaBottom > 0) {
+        if(delta !== 0) {
+            console.log('Automatic scroll is needed', delta);
             var currentScrollTop = $container.scrollTop();
-            deltaBottom += currentScrollTop;
-            $container.scrollTop(deltaBottom)      
-        }
-        if(deltaTop < 0) {
-            var currentScrollTop = $container.scrollTop();
-            deltaTop += currentScrollTop;
-            $container.scrollTop(deltaTop)      
+            delta += currentScrollTop;
+            $container.scrollTop(delta)      
         }
     }
 
