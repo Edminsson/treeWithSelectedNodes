@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="plunker">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>AngularJS Plunker</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-tree/2.22.2/angular-ui-tree.css" />
+    <script>document.write('<base href="' + document.location + '" />');</script>
+    <link rel="stylesheet" href="style.css" />
+    <script data-require="angular.js@1.4.x" src="https://code.angularjs.org/1.4.12/angular.js" data-semver="1.4.9"></script>
+    <script data-require="angular-route@1.5.8" data-semver="1.5.8" src="https://code.angularjs.org/1.5.8/angular-route.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-tree/2.22.2/angular-ui-tree.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+    <script src="dataFactory.js"></script>
+    <script src="treeHelper.js"></script>
+    <script src="highlightDirective.js"></script>
+  </head>
+
+  <body ng-controller="BasicExampleCtrl">
+
+    <div class="container">
+        <ul class="nav nav-pills">
+        <li role="presentation"><a href=""><span ng-click="collapseAll()" class="glyphicon glyphicon-expand"></span></a></li>
+        <li role="presentation"><a href=""><span ng-click="expandAll()" class="glyphicon glyphicon-collapse-down"></span></a></li>
+        </ul>    
+
+
+        <h3>Tree with selected Nodes</h3>
+
+        <div>
+            <button ng-click="visaNodInfo()">Visa info om specifik nod</button>
+            <button ng-click="visaNod()">Visa nod</button>
+        </div>
+
+        <div>
+            <select name="bilder" ng-change="findNodeById(aktuellBild)" id="bilder" ng-model="aktuellBild" ng-options="bild as (bild.namn + ' ' + bild.id) for bild in bilder"></select>
+            <div>
+                <span>aktuellBild</span>
+                <span>Id: {{aktuellBild.id}}</span>
+                <span>Namn: {{aktuellBild.namn}}</span>
+            </div>
+            <div>
+                <span>CurrentNode</span>
+                <span>Id: {{currentNode.id}}</span>
+                <span>Title: {{currentNode.title}}</span>
+                <span>Selected: {{currentNode.isSelected}}</span>
+            </div>
+        </div>
+        
+        <div id="message"></div>
+
+        <div>
+            <div ui-tree="" id="tree-root" highlight>
+                <ol ui-tree-nodes="" ng-model="trad">
+                <li ng-repeat="node in trad" ui-tree-node="" ng-include="'nodes_renderer.html'"></li>
+                </ol>
+            </div>
+        </div>
+
+
+
+
+    </div>
+    
+    
+  </body>
+
+</html>

@@ -1,0 +1,26 @@
+/* Put your css in here */
+.pekare {
+  cursor: pointer;
+}
+.selected {
+    background-color: lightblue;
+}
+
+.glyphicon-none:before {
+    content: "\2122";
+    color: transparent !important;
+}
+.platsth{
+  margin-right: 10px;
+}
+.fasthojd {
+  height: 120px;
+  background-color: lightblue;
+  overflow-y: scroll;
+  position: relative;
+}
+
+#tree-root {
+  position: relative;
+  top : 20px;
+}
