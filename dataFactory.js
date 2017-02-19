@@ -152,11 +152,40 @@ angular.module('plunker')
 	  {id:8, namn:'fågel'},{id:701, namn:'häst'},
 	  {id:7, namn:'katt'},{id:801, namn:'hund'},
 	  ];
+    
+
+    var automaticId = 0;
+
+    function getBranch() {
+        var nodeId = automaticId + 1;
+        var childNodeId1 = nodeId + 1;
+        var childNodeId2 = childNodeId1 + 1;
+        automaticId = childNodeId2;
+        var branch = {
+            title: 'Node_' + nodeId,
+            id: nodeId,
+            nodes: [
+                { title: 'ChildNode_' + childNodeId1, id:childNodeId1, nodes: []	},
+                { title: 'ChildNode_' + childNodeId2, id:childNodeId2, nodes: []	}
+            ]
+            
+        }
+        return branch;
+    }
+    function generateTree(numberOfBranches) {
+        automaticId = Math.floor(Math.random() * 100);
+        generatedTree = [];
+        for (var i = 0; i < numberOfBranches; i++) {
+            generatedTree.push(getBranch());
+        }
+        return generatedTree;
+    }
 
   return {
     data: data,
     trad: trad,
-    bilder: bilder
+    bilder: bilder,
+    generateTree: generateTree
   };
 
 });

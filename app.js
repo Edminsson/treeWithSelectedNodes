@@ -56,8 +56,8 @@ app.controller('BasicExampleCtrl', ['$scope', 'dataFactory', 'treeHelper', funct
     }
   }
   
-  $scope.alerta = function(medd) {
-    $scope.name = medd;
+  $scope.getGeneratedTree = function() {
+    $scope.trad = dataFactory.generateTree(400);
   }
   $scope.taBort = function(index) {
     $scope.trad[0].nodes.splice(index, 1);
@@ -68,7 +68,7 @@ app.controller('BasicExampleCtrl', ['$scope', 'dataFactory', 'treeHelper', funct
 
   $scope.expandAll = function () {
     $scope.$broadcast('angular-ui-tree:expand-all');
-  };  
+  };
 
   $scope.data = dataFactory.data
   $scope.trad = dataFactory.trad; 
