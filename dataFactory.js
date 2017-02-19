@@ -142,41 +142,47 @@ angular.module('plunker')
 	}];
 	
 	var bilder = [
-	  {id:15, namn:'uno'},{id:702, namn:'dos'},
-	  {id:2, namn:'mono'},{id:202, namn:'apa'},
-	  {id:5, namn:'karta'},
-	  {id:201, namn:'Lund'},{id:10, namn:'Kallinge'},{id:2, namn:'What'},
-	  {id:701, namn:'nada'},{id:12, namn:'filt'},
-	  {id:15, namn:'orm'},{id:1502, namn:'lejon'},
-	  {id:1401, namn:'fisk'},{id:1, namn:'tiger'},
-	  {id:8, namn:'fågel'},{id:701, namn:'häst'},
-	  {id:7, namn:'katt'},{id:801, namn:'hund'},
+	  {id:1, namn:'uno'},
+	  {id:2, namn:'dos'},{id:201, namn:'doscientos uno'},{id:202, namn:'doscientos dos'},
+	  {id:5, namn:'cinco'},
+	  {id:6, namn:'seis'},{id:601, namn:'seiscientos uno'},
+	  {id:7, namn:'siete'},{id:701, namn:'setecientos uno'},{id:702, namn:'setecientos dos'},
+	  {id:8, namn:'ocho'},{id:801, namn:'ochocientos uno'},{id:802, namn:'ochocientos dos'},
+	  {id:9, namn:'nueve'},
+	  {id:10, namn:'diez'},{id:1001, namn:'mil uno'},
+	  {id:11, namn:'once'},{id:1101, namn:'mil ciento uno'},{id:1102, namn:'mil ciento dos'},
+	  {id:12, namn:'doce'},{id:1201, namn:'mil doscientos uno'},{id:1202, namn:'mil dosciento dos'},
+	  {id:13, namn:'trece'},
+	  {id:14, namn:'catorce'},
+	  {id:15, namn:'quince'},{id:1501, namn:'mil quinientos uno'},{id:1502, namn:'mil quinientos dos'},
 	  ];
     
+    function getBilder() {
+        return bilder;
+    }
 
     var automaticId = 0;
-
-    function getBranch() {
-        var nodeId = automaticId + 1;
-        var childNodeId1 = nodeId + 1;
-        var childNodeId2 = childNodeId1 + 1;
-        automaticId = childNodeId2;
-        var branch = {
-            title: 'Node_' + nodeId,
-            id: nodeId,
-            nodes: [
-                { title: 'ChildNode_' + childNodeId1, id:childNodeId1, nodes: []	},
-                { title: 'ChildNode_' + childNodeId2, id:childNodeId2, nodes: []	}
-            ]
-            
+    function getNode(level) {
+        automaticId ++;
+        level++;
+        var node = {
+            title: 'Node_' + automaticId,
+            id: automaticId,
+            nodes: []
         }
-        return branch;
+        bilder.push({id: automaticId, namn: 'varde_' + automaticId});
+        while (level < 4 && Math.floor(Math.random() * 10) > 5) {
+            node.nodes.push(getNode(level));
+        }
+        return node;
     }
-    function generateTree(numberOfBranches, generateNewIds) {
+
+    function generateTree(numberOfTopNodes, generateNewIds) {
+        bilder = [];
         automaticId = (generateNewIds) ? Math.floor(Math.random() * 100) : 0;
         generatedTree = [];
-        for (var i = 0; i < numberOfBranches; i++) {
-            generatedTree.push(getBranch());
+        for (var i = 0; i < numberOfTopNodes; i++) {
+            generatedTree.push(getNode(0));
         }
         return generatedTree;
     }
@@ -184,7 +190,7 @@ angular.module('plunker')
   return {
     data: data,
     trad: trad,
-    bilder: bilder,
+    getBilder: getBilder,
     generateTree: generateTree
   };
 

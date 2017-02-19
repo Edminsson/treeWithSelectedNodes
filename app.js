@@ -10,7 +10,7 @@ app.controller('BasicExampleCtrl', ['$scope', 'dataFactory', 'treeHelper', funct
   $scope.indexet = 2;
   $scope.antalGrenar = 400;
   $scope.skapaNyaId = false;
-  $scope.bilder = dataFactory.bilder;
+  $scope.bilder = dataFactory.getBilder();
   $scope.aktuellBild = $scope.bilder[0];
   $scope.currentNode = {};
   $scope.findNodeById = (bild) => {
@@ -61,8 +61,8 @@ app.controller('BasicExampleCtrl', ['$scope', 'dataFactory', 'treeHelper', funct
   $scope.getGeneratedTree = function(antal, skapaNyaId) {
     console.log('parametrar', antal, skapaNyaId);
     $scope.trad = dataFactory.generateTree(antal, skapaNyaId);
-    //create faked aktuellBild
-    $scope.aktuellBild = {id:(antal * 3 - 1), namn:'fejk'}
+    $scope.bilder = dataFactory.getBilder();
+    $scope.aktuellBild = $scope.bilder[$scope.bilder.length -1];
   }
   $scope.taBort = function(index) {
     $scope.trad[0].nodes.splice(index, 1);
