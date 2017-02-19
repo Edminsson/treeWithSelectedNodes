@@ -4,7 +4,7 @@ app.controller('MainCtrl', function($scope) {
   $scope.name = 'World';
 });
 
-app.controller('BasicExampleCtrl', ['$scope', 'dataFactory', 'treeHelper', function ($scope, dataFactory, treeHelper) {
+app.controller('BasicExampleCtrl', ['$scope', 'dataFactory', 'treeHelper', '$timeout', function ($scope, dataFactory, treeHelper, $timeout) {
   $scope.name = 'World';
   $scope.nodId = 11;
   $scope.indexet = 2;
@@ -57,12 +57,21 @@ app.controller('BasicExampleCtrl', ['$scope', 'dataFactory', 'treeHelper', funct
       $(window).scrollTop(delta)      
     }
   }
-  
-  $scope.getGeneratedTree = function(antal, skapaNyaId) {
-    console.log('parametrar', antal, skapaNyaId);
-    $scope.trad = dataFactory.generateTree(antal, skapaNyaId);
+
+  $scope.getBilder = () => {
     $scope.bilder = dataFactory.getBilder();
     $scope.aktuellBild = $scope.bilder[$scope.bilder.length -1];
+  }
+  
+  $scope.getGeneratedTree = function(antal, skapaNyaId) {
+    var starttid = Date.now();
+    console.log('parametrar', antal, skapaNyaId);
+    $scope.trad = dataFactory.generateTree(antal, skapaNyaId);
+    $timeout(()=> {
+        var sluttid = Date.now();
+        var delta = sluttid - starttid;
+        alert('laddning tog ' + delta + 'ms');
+    });
   }
   $scope.taBort = function(index) {
     $scope.trad[0].nodes.splice(index, 1);

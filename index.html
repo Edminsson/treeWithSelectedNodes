@@ -41,7 +41,8 @@
         </div>
 
         <div>
-            <select name="bilder" ng-change="findNodeById(aktuellBild)" id="bilder" ng-model="aktuellBild" ng-options="bild as (bild.namn + ' ' + bild.id) for bild in bilder"></select>
+            <select name="bilder" ng-change="findNodeById(aktuellBild)" id="bilder" ng-model="aktuellBild" ng-options="bild as (bild.namn + ' ' + bild.id) for bild in bilder track by bild.id"></select>
+            <button ng-click="getBilder()">Uppdatera plocklistan</button>
             <div>
                 <span>aktuellBild</span>
                 <span>Id: {{aktuellBild.id}}</span>

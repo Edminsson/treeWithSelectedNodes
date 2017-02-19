@@ -2,6 +2,6 @@
 <span ng-if="!node.nodes || node.nodes.length == 0" class="glyphicon glyphicon-none"></span>
     <span id="node_id_{{node.id}}" class="pekare" ng-class="{selected: node.isSelected}" ng-click="alerta(node.title)">{{node.title}}({{node.id}})</span> 
 <ol ui-tree-nodes="" ng-model="node.nodes" ng-class="{hidden: collapsed}">
-    <li ng-repeat="node in node.nodes  track by node.id" id="menu-item-{{$index}}" ui-tree-node data-nodrag ng-include="'nodes_renderer.html'">
+    <li ng-repeat="node in node.nodes track by node.id" id="menu-item-{{$index}}" ui-tree-node data-nodrag ng-include="'nodes_renderer.html'">
     </li>
 </ol>
