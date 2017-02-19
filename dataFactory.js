@@ -172,8 +172,8 @@ angular.module('plunker')
         }
         return branch;
     }
-    function generateTree(numberOfBranches) {
-        automaticId = Math.floor(Math.random() * 100);
+    function generateTree(numberOfBranches, generateNewIds) {
+        automaticId = (generateNewIds) ? Math.floor(Math.random() * 100) : 0;
         generatedTree = [];
         for (var i = 0; i < numberOfBranches; i++) {
             generatedTree.push(getBranch());

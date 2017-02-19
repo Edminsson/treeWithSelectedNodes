@@ -33,7 +33,11 @@
         <div>
             <button ng-click="visaNodInfo()">Visa info om specifik nod</button>
             <button ng-click="visaNod()">Visa nod</button>
-            <button ng-click="getGeneratedTree()">Get generated tree</button>
+        </div>
+        <div>
+            <label for="">Antal grenar</label><input ng-model="antalGrenar" type="number">
+            <label for="">Nya id</label><input ng-model="skapaNyaId" type="checkbox">
+            <button ng-click="getGeneratedTree(antalGrenar, skapaNyaId)">Get generated tree</button>
         </div>
 
         <div>
@@ -54,9 +58,9 @@
         <div id="message"></div>
 
         <div id="treeContainer">
-            <div ui-tree="" id="tree-root" highlight>
+            <div ui-tree="" id="tree-root" highlight="aktuellBild.id">
                 <ol ui-tree-nodes="" ng-model="trad">
-                <li ng-repeat="node in trad" ui-tree-node="" ng-include="'nodes_renderer.html'"></li>
+                <li ng-repeat="node in trad track by node.id" ui-tree-node="" ng-include="'nodes_renderer.html'"></li>
                 </ol>
             </div>
         </div>
