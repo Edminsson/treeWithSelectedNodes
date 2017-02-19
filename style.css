@@ -1,7 +1,10 @@
 /* Put your css in here */
 #treeContainer {
+  position: relative;
   background-color: lightgray;
   height: 200px;
+  width: 300px;
+  left: 500px;
   overflow-y: auto;
 }
 .pekare {
